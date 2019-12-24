@@ -5,7 +5,9 @@ export default class Posts extends Component {
     return (
       <ul>
         {this.props.posts.map((post, i) => (
-          <li key={i}>{post.title}</li>
+          <li key={i}>
+            {post.title}
+          </li>
         ))}
       </ul>
     );

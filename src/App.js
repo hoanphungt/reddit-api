@@ -47,7 +47,7 @@ class App extends Component {
         <p>
           {lastUpdated && (
             <span>
-              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.{' '}
+              Last updated at {new Date(lastUpdated).toLocaleTimeString()}{' '}
             </span>
           )}
           {!isFetching && (
@@ -56,7 +56,7 @@ class App extends Component {
             </button>
           )}
         </p>
-        {isFetching && posts.lenghth === 0 && <h2>Loading ...</h2>}
+        {isFetching && <h2>Loading ...</h2>}
         {!isFetching && posts.length === 0 && <h2>The list is empty</h2>}
         {posts.length > 0 && (
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
