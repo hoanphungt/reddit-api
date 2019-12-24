@@ -1,4 +1,4 @@
-import fetch from 'cross-fetch';
+// import fetch from 'cross-fetch';
 
 // TYPES
 export const REQUEST_POSTS = 'REQUEST_POSTS';
@@ -12,7 +12,7 @@ export const fetchPosts = (subreddit) => (dispatch) => {
         type: REQUEST_POSTS,
         subreddit
     });
-    return fetch(`https://www.reddit.com/r/${subreddit}.json`).then(
+    fetch(`https://www.reddit.com/r/${subreddit}.json`).then(
         response => response.json()
     ).then(
         body => dispatch({
