@@ -5,8 +5,15 @@ export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT';
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
+export const ADD_NEW_SUBREDDIT = 'ADD_NEW_SUBREDDIT';
 
 // ACTIONS
+export const addNewSubreedit = (subreddit) => (dispatch) => {
+    dispatch({
+        type: ADD_NEW_SUBREDDIT,
+        subreddit
+    })
+};
 
 export const selectSubreddit = (subreddit) => ({
     type: SELECT_SUBREDDIT,
