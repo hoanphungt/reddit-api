@@ -68,7 +68,10 @@ class App extends Component {
           </div>
         )}
         <hr/>
-        <Form addNewSubreddit={this.props.addNewSubreddit} />
+        <Form
+          addNewSubreddit={this.props.addNewSubreddit}
+          selectSubreddit={this.props.selectSubreddit}
+        />
       </div>
     );
   };

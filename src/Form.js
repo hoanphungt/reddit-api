@@ -6,11 +6,15 @@ class Form extends Component {
     };
 
     render() {
-        const { addNewSubreddit } = this.props;
+        const { addNewSubreddit, selectSubreddit } = this.props;
+        const { subreddit } = this.state;
 
         const handleSubmit = (e) => {
             e.preventDefault();
-            if (this.state.subreddit) addNewSubreddit(this.state.subreddit);
+            if (subreddit) {
+                addNewSubreddit(subreddit);
+                selectSubreddit(subreddit);
+            };
         };
         return (
             <form onSubmit={handleSubmit}>
@@ -19,7 +23,7 @@ class Form extends Component {
                 <input
                     type="text"
                     name="subreddit"
-                    value={this.state.subreddit}
+                    value={subreddit}
                     onChange={(e) => this.setState({
                         subreddit: e.target.value
                     })}
