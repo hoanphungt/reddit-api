@@ -71,11 +71,15 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   const { selectedSubreddit, postsBySubreddit } = state;
-  return {
+  return postsBySubreddit[selectedSubreddit] ? {
     selectedSubreddit,
-    posts: getPostsBySubreddit(postsBySubreddit, selectedSubreddit) || [],
+    posts: getPostsBySubreddit(postsBySubreddit, selectedSubreddit),
     isFetching: getFetchingState(postsBySubreddit, selectedSubreddit),
     lastUpdated: getLastUpdated(postsBySubreddit, selectedSubreddit),
+  } : {
+    selectedSubreddit,
+    isFetching: true,
+    posts: [],
   };
 };
 
