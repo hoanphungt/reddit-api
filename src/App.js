@@ -3,6 +3,7 @@ import { fetchPostsIfNeeded, selectSubreddit, invalidateSubreddit } from './acti
 import { connect } from 'react-redux';
 import Picker from './Picker';
 import Posts from './Posts';
+import { getPostsBySubreddit, getFetchingState, getLastUpdated } from './reducers';
 
 class App extends Component {
   componentDidMount() {
@@ -42,7 +43,7 @@ class App extends Component {
         <Picker
           value={selectedSubreddit}
           onChange={this.onChange}
-          options={['reactjs', 'frontend', 'soccer', 'realmadrid', 'hoan']}
+          options={['reactjs', 'frontend', 'soccer', 'realmadrid']}
         />
         <p>
           {lastUpdated && (
@@ -70,18 +71,11 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   const { selectedSubreddit, postsBySubreddit } = state;
-  const { isFetching, lastUpdated, items: posts } = postsBySubreddit[
-    selectedSubreddit
-  ] || {
-    isFetching: true,
-    items: []
-  };
-
   return {
     selectedSubreddit,
-    posts,
-    isFetching,
-    lastUpdated
+    posts: getPostsBySubreddit(postsBySubreddit, selectedSubreddit) || [],
+    isFetching: getFetchingState(postsBySubreddit, selectedSubreddit),
+    lastUpdated: getLastUpdated(postsBySubreddit, selectedSubreddit),
   };
 };
 

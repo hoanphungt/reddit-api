@@ -8,7 +8,7 @@ export default class Picker extends Component {
         <h1
           onClick={() => window.open(`https://www.reddit.com/r/${value}`)}
           style={{
-              cursor: 'pointer'
+            cursor: 'pointer'
           }}
         >
           {value}

@@ -53,6 +53,19 @@ const postsBySubreddit = (state = {}, action) => {
     };
 };
 
+// SELECTORS
+export const getPostsBySubreddit = (postsBySubreddit, subreddit) => {
+    return postsBySubreddit[subreddit] && postsBySubreddit[subreddit].items;
+};
+
+export const getFetchingState = (postsBySubreddit, subreddit) => {
+    return postsBySubreddit[subreddit] && postsBySubreddit[subreddit].isFetching;
+};
+
+export const getLastUpdated = (postsBySubreddit, subreddit) => {
+    return postsBySubreddit[subreddit] && postsBySubreddit[subreddit].lastUpdated;
+};
+
 const rootReducer = combineReducers({
     postsBySubreddit,
     selectedSubreddit
