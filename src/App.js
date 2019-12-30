@@ -5,6 +5,7 @@ import Picker from './Picker';
 import Posts from './Posts';
 import { getPostsBySubreddit, getFetchingState, getLastUpdated } from './reducers';
 import Form from './Form';
+import './App.css';
 
 class App extends Component {
   componentDidMount() {

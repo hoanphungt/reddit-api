@@ -15,6 +15,7 @@ class Form extends Component {
         return (
             <form onSubmit={handleSubmit}>
                 Add more subreddit:
+                &nbsp;
                 <input
                     type="text"
                     name="subreddit"
@@ -23,6 +24,7 @@ class Form extends Component {
                         subreddit: e.target.value
                     })}
                 />
+                &nbsp;
                 <button type="submit">
                     Submit
                 </button>
