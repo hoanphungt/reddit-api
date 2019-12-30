@@ -1,5 +1,17 @@
 import { combineReducers } from 'redux';
-import { SELECT_SUBREDDIT, INVALIDATE_SUBREDDIT, REQUEST_POSTS, RECEIVE_POSTS } from './action';
+import { SELECT_SUBREDDIT, INVALIDATE_SUBREDDIT, REQUEST_POSTS, RECEIVE_POSTS, ADD_NEW_SUBREDDIT } from './action';
+
+const subreddits = (state = ['reactjs', 'frontend', 'soccer', 'realmadrid'], action) => {
+    switch (action.type) {
+        case ADD_NEW_SUBREDDIT:
+            return [
+                ...state,
+                action.subreddit
+            ];
+        default:
+            return state;
+    };
+};
 
 const selectedSubreddit = (state = 'reactjs', action) => {
     switch (action.type) {
@@ -67,6 +79,7 @@ export const getLastUpdated = (postsBySubreddit, subreddit) => {
 };
 
 const rootReducer = combineReducers({
+    subreddits,
     postsBySubreddit,
     selectedSubreddit
 });
