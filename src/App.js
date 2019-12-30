@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { fetchPostsIfNeeded, selectSubreddit, invalidateSubreddit } from './action';
+import { fetchPostsIfNeeded, selectSubreddit, invalidateSubreddit, addNewSubreedit } from './action';
 import { connect } from 'react-redux';
 import Picker from './Picker';
 import Posts from './Posts';
 import { getPostsBySubreddit, getFetchingState, getLastUpdated } from './reducers';
+import Form from './Form';
 
 class App extends Component {
   componentDidMount() {
@@ -32,6 +33,7 @@ class App extends Component {
 
   render() {
     const {
+      subreddits,
       selectedSubreddit,
       posts,
       isFetching,
@@ -43,7 +45,7 @@ class App extends Component {
         <Picker
           value={selectedSubreddit}
           onChange={this.onChange}
-          options={['reactjs', 'frontend', 'soccer', 'realmadrid']}
+          options={subreddits}
         />
         <p>
           {lastUpdated && (
@@ -64,19 +66,23 @@ class App extends Component {
             <Posts posts={posts} />
           </div>
         )}
+        <hr/>
+        <Form addNewSubreddit={this.props.addNewSubreddit} />
       </div>
     );
   };
 };
 
 const mapStateToProps = (state) => {
-  const { selectedSubreddit, postsBySubreddit } = state;
+  const { subreddits, selectedSubreddit, postsBySubreddit } = state;
   return postsBySubreddit[selectedSubreddit] ? {
+    subreddits,
     selectedSubreddit,
     posts: getPostsBySubreddit(postsBySubreddit, selectedSubreddit),
     isFetching: getFetchingState(postsBySubreddit, selectedSubreddit),
     lastUpdated: getLastUpdated(postsBySubreddit, selectedSubreddit),
   } : {
+    subreddits,
     selectedSubreddit,
     isFetching: true,
     posts: [],
@@ -84,6 +90,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  addNewSubreddit: (subreddit) => dispatch(addNewSubreedit(subreddit)),
   fetchPostsIfNeeded: (subreddit) => dispatch(fetchPostsIfNeeded(subreddit)),
   selectSubreddit: (subreddit) => dispatch(selectSubreddit(subreddit)),
   invalidateSubreddit: (subreddit) => dispatch(invalidateSubreddit(subreddit)),
