@@ -6,7 +6,13 @@ export default class Posts extends Component {
       <ul>
         {this.props.posts.map((post, i) => (
           <li key={i}>
-            {post.title}
+            <a
+              href={`https://www.reddit.com${post.permalink}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {post.title}
+            </a>
           </li>
         ))}
       </ul>
